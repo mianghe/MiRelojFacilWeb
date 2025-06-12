@@ -1,0 +1,20 @@
+# Drupal specific ignored files
+/vendor/
+/web/core/
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+/web/sites/*/files/
+/web/sites/*/private/
+/web/sites/simpletest/
+/web/sites/*/settings*.php
+/web/sites/*/services*.yml
+/web/sites/*/settings*.local.php
+/web/sites/*/services*.local.yml
+*.sql
+*.log
+*.sqlite
+.env
+.idea/
+.vscode/
+npm-debug.log
