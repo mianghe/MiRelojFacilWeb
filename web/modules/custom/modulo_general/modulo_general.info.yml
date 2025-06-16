@@ -1,0 +1,4 @@
+name: 'Modulo general para MiRelojFacil'
+type: module
+description: 'Personalizacion'
+core_version_requirement: ^10

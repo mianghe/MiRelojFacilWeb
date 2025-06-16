@@ -1,0 +1,128 @@
+<?php
+
+/**
+ * @file
+ * Contains modulo_general.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Messenger\MessengerInterface;
+use Symfony\Component\HttpFoundation\Request;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * This hook is used to alter a specific form, identified by its base ID.
+ * In this case, 'node_form' is the base ID for all node edit forms.
+ */
+function modulo_general_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Check if we are on the edit form for a specific content type.
+  // Replace 'article' with your content type's machine name.
+  $node = $form_state->getFormObject()->getEntity();
+  
+  // No quiero que salga nada referente a revisiones
+  if (isset($form['revision_information'])) {
+    $form['revision_information']['#access'] = FALSE;
+  }
+  
+  //-- TIPO DE CONTENIDO ACTIVIDADES
+  if ($node->getEntityTypeId() === 'node' && $node->bundle() === 'actividades') {
+
+	// Desactivamos el selector de dispositivo. Se verá pero no se podrá editar
+	if (isset($form['field_dispositivo'])) {
+		$form['field_dispositivo']['#disabled'] = TRUE;
+	}
+
+    // Quitar el botón "Eliminar"
+    if (isset($form['actions']['delete'])) {
+      $form['actions']['delete']['#access'] = FALSE; // O unset($form['actions']['delete']); para eliminarlo completamente.
+    }
+
+    // Añadir un botón "Cancelar"
+    $request = \Drupal::service('request_stack')->getCurrentRequest();
+    $destination = $request->query->get('destination'); // Obtiene el valor de ?destination=
+
+    $cancel_url = '';
+    if (!empty($destination)) {
+      // Si el parámetro destination está presente, úsalo.
+      $cancel_url = $destination;
+    } else {
+      // Si no hay destination, usa la lógica predeterminada.
+      if ($node->isNew()) {
+        // Si es un nodo nuevo, redirigir a la página de inicio o a la lista de contenido.
+        $cancel_url = Url::fromRoute('<front>')->toString(); // O Url::fromRoute('system.admin_content')->toString();
+      } else {
+        // Si es un nodo existente, redirigir a la página de visualización del nodo.
+        $cancel_url = $node->toUrl()->toString();
+      }
+    }
+
+    $form['actions']['cancel'] = [
+      '#type' => 'link',
+      '#title' => t('Cancel'),
+      '#url' => Url::fromUserInput($cancel_url),
+      '#attributes' => [
+        'class' => ['btn', 'btn-secondary'], // Clases CSS para que se vea como un botón
+      ],
+      '#weight' => 100, // Ajusta el peso para ordenar el botón
+    ];
+
+    // Ajustar el peso del botón "Guardar"
+    // $form['actions']['submit']['#weight'] = 0;
+  }
+  
+  //-- TIPO DE CONTENIDO DISPOSITIVO
+    if ($node->getEntityTypeId() === 'node' && $node->bundle() === 'dispositivo') {
+
+    // Añadir un botón "Cancelar"
+    $request = \Drupal::service('request_stack')->getCurrentRequest();
+    $destination = $request->query->get('destination'); // Obtiene el valor de ?destination=
+
+    $cancel_url = '';
+    if (!empty($destination)) {
+      // Si el parámetro destination está presente, úsalo.
+      $cancel_url = $destination;
+    } else {
+      // Si no hay destination, usa la lógica predeterminada.
+      if ($node->isNew()) {
+        // Si es un nodo nuevo, redirigir a la página de inicio o a la lista de contenido.
+        $cancel_url = Url::fromRoute('<front>')->toString(); // O Url::fromRoute('system.admin_content')->toString();
+      } else {
+        // Si es un nodo existente, redirigir a la página de visualización del nodo.
+        $cancel_url = $node->toUrl()->toString();
+      }
+    }
+
+    $form['actions']['cancel'] = [
+      '#type' => 'link',
+      '#title' => t('Cancel'),
+      '#url' => Url::fromUserInput($cancel_url),
+      '#attributes' => [
+        'class' => ['btn', 'btn-secondary'], // Clases CSS para que se vea como un botón
+      ],
+      '#weight' => 100, // Ajusta el peso para ordenar el botón
+    ];
+
+    // Ajustar el peso del botón "Guardar"
+    // $form['actions']['submit']['#weight'] = 0;
+  }
+}
+
+function modulo_general_form_user_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $account = $form_state->getFormObject()->getEntity();
+  if ($account->getEntityTypeId() === 'user') {
+    $cancel_url = '/mis-dispositivos';
+
+    $form['actions']['cancel'] = [
+      '#type' => 'link',
+      '#title' => t('Cancel'),
+      '#url' => Url::fromUserInput($cancel_url),
+      '#attributes' => [
+        'class' => ['btn', 'btn-secondary'], 
+      ],
+      '#weight' => 100, 
+    ];
+  }
+}
+

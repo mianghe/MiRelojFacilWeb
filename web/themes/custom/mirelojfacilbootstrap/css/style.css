@@ -12825,4 +12825,88 @@ a { color: #0b5230; }
 .footer-custom { background-color: #0b5230!important; }
 .footer-custom .navbar-nav .nav-item a.nav-link { color: #f2f2f2; }
 .navbar-nav .nav-item a.nav-link { color: #49A65D;}
+.navbar-toggler-icon { background-image:
+url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2811, 82, 48, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")!important;}
+
+.node--type-dispositivo	.field { 
+	font-size: x-large; 
+	margin-bottom: .2em;
+	}
+.node--type-dispositivo.node--view-mode-full {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+.view.view-mis-disp.view-id-mis_disp.view-display-id-page_1 .views-row {
+    margin: .5rem .5rem .5rem 1rem;
+}
+.view.view-mis-disp.view-id-mis_disp.view-display-id-page_1 .views-row .field-content {
+    font-size: x-large;
+}
+main {
+    padding-top: 2rem;
+}
+h1 {
+	margin-bottom: 1.5rem;
+}
+
+/*.node-actividades-edit-form .vertical-tabs {
+	display: none;
+}*/
+.node-actividades-edit-form #edit-field-lunes-wrapper,
+.node-actividades-edit-form #edit-field-martes-wrapper,
+.node-actividades-edit-form #edit-field-miercoles-wrapper,
+.node-actividades-edit-form #edit-field-jueves-wrapper,
+.node-actividades-edit-form #edit-field-viernes-wrapper,
+.node-actividades-edit-form #edit-field-sabado-wrapper,
+.node-actividades-edit-form #edit-field-domingo-wrapper,
+.node-actividades-form #edit-field-lunes-wrapper,
+.node-actividades-form #edit-field-martes-wrapper,
+.node-actividades-form #edit-field-miercoles-wrapper,
+.node-actividades-form #edit-field-jueves-wrapper,
+.node-actividades-form #edit-field-viernes-wrapper,
+.node-actividades-form #edit-field-sabado-wrapper,
+.node-actividades-form #edit-field-domingo-wrapper {
+	display: inline-block;
+	margin-right: 1rem;
+}
+.node-form .form-actions {
+    text-align: left;
+}
+div#botones-dispositivo {
+    margin-top: 1rem;
+}
 #block-mirelojfacilbootstrap-account-menu {}
+
+
+
+.node-actividades-form.node-form label,
+.node-actividades-edit-form.node-form label {
+	font-weight: bold;
+}
+.node-actividades-form.node-form legend,
+.node-actividades-edit-form.node-form legend {
+	font-weight: bold;
+	font-size: 1.25rem;
+}
+.node-actividades-form.node-form fieldset,
+.node-actividades-edit-form.node-form fieldset {
+	border: 1px solid #ccc;
+	padding: 1rem 1.5rem;
+	border-radius: 6px;
+}
+
+.node-actividades-form.node-form .form-item-field-activo-value,
+.node-actividades-edit-form.node-form .form-item-field-activo-value {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    padding: 1.5rem;
+    border-radius: 6px;
+}
+.node-actividades-form.node-form #edit-field-mensaje-wrapper,
+.node-actividades-edit-form.node-form #edit-field-mensaje-wrapper {
+    border: 1px solid #ccc;
+    padding: 1.5rem;
+    border-radius: 6px;
+    background: #fff4dd;
+}
